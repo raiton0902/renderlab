@@ -1,5 +1,7 @@
 # Renderlab
 
+<img src="assets/logo.png" alt="Renderlab" width="128" align="right">
+
 Turn a local video edit or animation render into a **Google Colab kit** — a notebook, a package, and a plain-language guide — and prove the kit works before handing it over.
 
 Renderlab is a skill for coding agents — **any** coding agent. DeepSeek Harness, Claude Code, Codex, Gemini CLI, Cursor, Copilot, or a script of your own: if the agent can read a `SKILL.md`, it can run this. The contract is one text file, and the tooling is two Python scripts with no dependencies. It exists because rendering 1080p on a laptop eventually fails:
@@ -194,6 +196,8 @@ references/colab-reality.md     failure log, with quoted errors
 references/porting-renderer.md  renderer porting recipes
 tools/embed_cells.py            regenerate the cell copies embedded in the packer
 tools/package_agensi.py         build + validate the marketplace upload ZIP
+tools/make_logo.py              regenerate the 512/1024 logo from the font
+assets/logo.png                 the mark
 ```
 
 Edit `assets/cells/*` to change the notebook every future kit gets, then repack. The packer refuses unreplaced template tokens.

@@ -13,6 +13,8 @@ Renderlab moves a render off the user's machine and onto Google Colab **without 
 
 The user is assumed to be on the **free Colab tier**, with **zero configuration appetite**, and **no coding or Python experience**. Treat every number of clicks and every error message as a design constraint.
 
+This skill is **host-agnostic**. It is one `SKILL.md` plus two Python 3.8+ standard-library scripts, so DeepSeek Harness, Claude Code, Codex, Gemini CLI, Cursor or a custom agent can all run it; only the folder it lives in changes. Do not assume a specific harness's extra tools — a shell, file access, and the ability to run Python are enough.
+
 ## The one rule that matters
 
 **A kit that has not been run inside a clean extraction is not finished.** The failure this skill exists to prevent: a package missing two files shipped anyway, produced 121 seconds of blank video, then died in `ffmpeg` with `Impossible to open ... no such file or directory`. The user saw a 60-line traceback for a missing PNG.

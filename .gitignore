@@ -13,6 +13,10 @@ __pycache__/
 .venv/
 venv/
 
+# node / npm
+node_modules/
+.renderlab-test/
+
 # os / editor
 .DS_Store
 Thumbs.db

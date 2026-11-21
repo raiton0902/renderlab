@@ -1,0 +1,44 @@
+{
+  "name": "renderlab",
+  "version": "1.0.0",
+  "description": "Install the Renderlab skill: build verified Google Colab render kits (notebook + package + plain-language steps).",
+  "keywords": [
+    "skill",
+    "agent",
+    "colab",
+    "render",
+    "video",
+    "ffmpeg",
+    "notebook"
+  ],
+  "homepage": "https://github.com/raiton0902/renderlab#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raiton0902/renderlab.git"
+  },
+  "bugs": {
+    "url": "https://github.com/raiton0902/renderlab/issues"
+  },
+  "license": "MIT",
+  "author": "raiton0902",
+  "bin": {
+    "renderlab": "bin/renderlab.js"
+  },
+  "files": [
+    "bin/",
+    "SKILL.md",
+    "README.md",
+    "LICENSE",
+    "assets/",
+    "references/",
+    "scripts/",
+    "install.sh",
+    "install.ps1"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node bin/renderlab.js --dir .renderlab-test --force && node -e \"require('fs').accessSync('.renderlab-test/SKILL.md')\""
+  }
+}

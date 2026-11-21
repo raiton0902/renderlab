@@ -2,7 +2,7 @@
 
 Turn a local video edit or animation render into a **Google Colab kit** — a notebook, a package, and a plain-language guide — and prove the kit works before handing it over.
 
-Renderlab is a skill for coding agents (DeepSeek Harness, Claude Code, Codex, or anything that reads a `SKILL.md`). It exists because rendering 1080p on a laptop eventually fails:
+Renderlab is a skill for coding agents — **any** coding agent. DeepSeek Harness, Claude Code, Codex, Gemini CLI, Cursor, Copilot, or a script of your own: if the agent can read a `SKILL.md`, it can run this. The contract is one text file, and the tooling is two Python scripts with no dependencies. It exists because rendering 1080p on a laptop eventually fails:
 
 ```
 OSError: [WinError 1455] The paging file is too small for this operation to complete
@@ -31,6 +31,63 @@ The notebook flow:
 | STEP 5 | Probe the result, copy to Drive, print the Files-panel path |
 
 The product is **never** a rendered video. It is the kit.
+
+## Install
+
+One command, no clone, installs into `~/.dsh/skills/renderlab`:
+
+```bash
+npx github:raiton0902/renderlab
+```
+
+Other agents and locations:
+
+```bash
+npx github:raiton0902/renderlab --claude      # ~/.claude/skills/renderlab
+npx github:raiton0902/renderlab --dir ~/skills/renderlab
+npx github:raiton0902/renderlab --force       # replace an existing install
+```
+
+No Node? The shell installers do exactly the same:
+
+```bash
+# macOS / Linux
+curl -fsSL https://raw.githubusercontent.com/raiton0902/renderlab/main/install.sh | bash
+```
+
+```powershell
+# Windows
+irm https://raw.githubusercontent.com/raiton0902/renderlab/main/install.ps1 | iex
+```
+
+Or the boring way:
+
+```bash
+git clone https://github.com/raiton0902/renderlab.git ~/.dsh/skills/renderlab
+```
+
+Restart your agent afterwards so it reloads the skills folder, then ask *"edit this video and render it using /Renderlab"*.
+
+### Works with every agent
+
+Nothing here is specific to one host. The skill is `SKILL.md` plus plain files; the installer only decides **which folder** to copy into.
+
+| Agent | Command | Lands in |
+|---|---|---|
+| DeepSeek Harness | `npx github:raiton0902/renderlab` | `~/.dsh/skills/renderlab` |
+| Claude Code | `npx github:raiton0902/renderlab --claude` | `~/.claude/skills/renderlab` |
+| Gemini CLI, Codex, Cursor, Copilot, other | `npx github:raiton0902/renderlab --dir <path>` | whatever folder that agent reads |
+| No Node at all | `install.sh` (macOS/Linux) or `install.ps1` (Windows) | same paths, same result |
+
+If your agent has no skills folder, copy the directory anywhere and point the agent at it — e.g. add one line to your `AGENTS.md`:
+
+```md
+- Renderlab: build verified Google Colab render kits. Read `skills/renderlab/SKILL.md` before rendering.
+```
+
+The packer and selftest are pure Python 3.8+ standard library, so they run under any agent's shell, in CI, or by hand. No API key, no service, no runtime.
+
+`npx github:` runs this repo's installer directly, so nothing has to be published first. If the package is published to npm later, `npx renderlab` is the same command.
 
 ## Quickstart (for the person rendering)
 
@@ -126,6 +183,9 @@ Short version: **assert content, not liveness; list files explicitly; verify by 
 
 ```
 SKILL.md                        the skill: phases, contract, hard rules
+bin/renderlab.js                installer behind `npx github:raiton0902/renderlab`
+install.sh / install.ps1        curl / irm installers, no Node needed
+package.json                    publish-ready npm wrapper around the skill
 scripts/renderlab_pack.py       validate manifest → zip → notebook → readme
 scripts/renderlab_selftest.py   run the generated kit headless
 assets/cells/                   the five notebook cells as plain .py / .md

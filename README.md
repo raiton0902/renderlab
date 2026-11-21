@@ -192,9 +192,24 @@ assets/cells/                   the five notebook cells as plain .py / .md
 assets/renderlab.json.example   manifest to copy
 references/colab-reality.md     failure log, with quoted errors
 references/porting-renderer.md  renderer porting recipes
+tools/embed_cells.py            regenerate the cell copies embedded in the packer
+tools/package_agensi.py         build + validate the marketplace upload ZIP
 ```
 
 Edit `assets/cells/*` to change the notebook every future kit gets, then repack. The packer refuses unreplaced template tokens.
+
+## Uploading to a marketplace (Agensi)
+
+```bash
+python tools/package_agensi.py --out dist
+# -> dist/renderlab-agensi-v1.0.0.zip
+```
+
+The ZIP puts `SKILL.md` at the root, ships text only, and carries an embedded copy of the notebook cells — marketplace sandboxes run each script alone from a temporary file, where `assets/cells` is not on disk. `python scripts/renderlab_pack.py --selfcheck` verifies that embedded copy still matches the files; `tools/embed_cells.py` regenerates it after an edit.
+
+Verified by extracting the ZIP and running both scripts the way the sandbox would: the packer alone in an empty directory builds a kit, and the selftest passes (1.62 s against 1.60 s expected).
+
+Listing fields come from the `SKILL.md` frontmatter: `name`, `description`, `summary`, `version`, `tags`, `keywords`, `use_cases`, `docs_url`.
 
 ## Free-tier limits the kit tells users about
 

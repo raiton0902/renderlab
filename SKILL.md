@@ -1,6 +1,27 @@
 ---
 name: renderlab
 description: Turn a local video edit or animation project into a self-contained Google Colab render kit — a ready-to-run .ipynb notebook plus a package .zip plus plain-language steps — and prove the kit works before shipping it. Use when the user says "render it in Colab", "/Renderlab", "render on Google Colab", "I only have Colab", "my laptop can't render this", or hands over a renderer and wants a notebook they can run without touching Python. Covers free-plan limits, dependency failures, disconnects, and file download.
+summary: Builds verified Google Colab render kits — notebook, package, plain-English steps — so a non-coder can render 1080p video in the browser when the local machine runs out of memory.
+version: 1.0.0
+tags:
+  - video
+  - rendering
+  - google-colab
+  - ffmpeg
+  - notebook
+  - agent-skill
+keywords:
+  - render video in colab
+  - colab video editing
+  - ipynb render kit
+  - free colab render
+  - ffmpeg python renderer
+use_cases:
+  - Render a local video edit on the free Google Colab tier, with a notebook the user only presses play on.
+  - Move an animation or caption project off a low-memory laptop that can no longer spawn ffmpeg.
+  - Hand a deliverable render kit to an editor who does not write code.
+  - Package a Python, Remotion or ffmpeg renderer so it can be proven headless before delivery.
+docs_url: https://github.com/raiton0902/renderlab
 ---
 
 # Renderlab

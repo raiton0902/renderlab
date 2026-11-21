@@ -1,0 +1,20 @@
+# build artefacts
+dist/
+Renderlab_*_package.zip
+Renderlab_*.ipynb
+RENDER_IN_COLAB.md
+_selftest*/
+_negtest*/
+_optcheck*/
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# os / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

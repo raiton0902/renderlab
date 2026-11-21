@@ -1,0 +1,25 @@
+{
+  "name": "laura13",
+  "title": "Laura 13 - kinetic captions",
+  "entry": "render.py",
+  "entry_args": [],
+  "output": "out/final.mp4",
+  "total_frames": 2128,
+  "fps": 29.97,
+  "smoke_frames": 24,
+  "chunk_frames": 700,
+  "deps": ["numpy", "opencv-python-headless", "pillow"],
+  "imports": ["numpy", "cv2", "PIL"],
+  "optional_imports": ["mediapipe"],
+  "files": [
+    "render.py",
+    "assets/source.mp4",
+    "assets/words.json",
+    "assets/font.ttf",
+    "assets/selfie_segmenter_landscape.tflite",
+    "assets/whoosh.wav",
+    "assets/pop.wav"
+  ],
+  "est_minutes": 14,
+  "notes": "1920x1080. Audio is mixed into every chunk, so parts join cleanly."
+}

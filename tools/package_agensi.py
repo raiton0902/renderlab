@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+﻿#!/usr/bin/env python
 """Build the Agensi upload ZIP and validate it against the marketplace rules.
 
     python tools/package_agensi.py [--out dist]
@@ -31,6 +31,7 @@ INCLUDE = [
     "assets/renderlab.json.example",
     "references/colab-reality.md",
     "references/porting-renderer.md",
+    "references/colab-agent-access.md",
 ] + ["assets/cells/" + c for c in CELLS]
 
 BAD_EXT = {".exe", ".dll", ".so", ".dylib", ".bin", ".app", ".dmg", ".msi",
@@ -129,3 +130,4 @@ def main(argv: list[str]) -> int:
 
 if __name__ == "__main__":
     sys.exit(main(sys.argv[1:]))
+

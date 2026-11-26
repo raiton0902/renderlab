@@ -139,6 +139,15 @@ Present the three files with `present`. Then, in the user's language and without
 
 Include the honest limits: free tier gives roughly 12 GB RAM and a 12-hour ceiling with a roughly 90-minute idle timeout; keep the tab open; a disconnect means re-running steps, which chunking softens but does not erase.
 
+## Phase 6 — Optional: headless Colab
+
+The kit is built for a human pressing play. If the *host agent* can reach Colab itself, it may render the same kit without a browser — but only as an extra path, never as a replacement for the deliverable.
+
+- **Colab CLI** (`google-colab-cli`, Linux/macOS only): `colab new` → `upload` the zip → `colab exec -f Renderlab_x.ipynb` → `colab download` the MP4 → `stop`. The session survives while the kernel is active, so a closed tab or lid does not kill the render.
+- **Colab API MCP endpoint** (`https://colaboratory.googleapis.com/mcp`, any OS): `list_runtimes`/`create_runtime` → `create_session` → upload the zip over the runtime HTTP proxy → `execute_code` cell by cell → download the output.
+
+Both are documented, with the exact tool names and limits, in `references/colab-agent-access.md`. Rules: keep the 24-frame smoke gate, split long cells under the 600 s `execute_code` ceiling, never use `files.download()`, and still ship the notebook + zip so the user can rerun it themselves.
+
 ## Notebook anatomy (fixed)
 
 Five code cells, in this order. The generator bakes every project value in; the user edits nothing.

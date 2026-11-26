@@ -119,6 +119,10 @@ python skills/renderlab/scripts/renderlab_selftest.py --dist ./dist
 
 `renderlab_selftest.py` unpacks the package into a clean directory, executes the generated notebook's own code cells headlessly, renders a few frames in several chunks, joins them, and checks the file with `ffprobe`. **Nothing is presented before it passes.**
 
+### Headless option
+
+If the agent itself can reach Colab, it can run the same kit without a browser: the [Colab CLI](https://github.com/googlecolab/google-colab-cli) on Linux/macOS (`colab new` → `upload` → `colab exec -f kit.ipynb` → `colab download` → `stop`), or the hosted [Colab API MCP endpoint](https://developers.google.com/colab/api/reference/mcp) from any OS (`create_runtime` → `create_session` → `execute_code`). Both paths, their limits, and the 600 s `execute_code` reattach rule are documented in [references/colab-agent-access.md](references/colab-agent-access.md). The notebook kit stays the deliverable either way.
+
 ## The renderer contract
 
 ```bash
@@ -194,6 +198,7 @@ assets/cells/                   the five notebook cells as plain .py / .md
 assets/renderlab.json.example   manifest to copy
 references/colab-reality.md     failure log, with quoted errors
 references/porting-renderer.md  renderer porting recipes
+references/colab-agent-access.md  headless routes: Colab CLI and the Colab MCP endpoint
 tools/embed_cells.py            regenerate the cell copies embedded in the packer
 tools/package_agensi.py         build + validate the marketplace upload ZIP
 tools/make_logo.py              regenerate the 512/1024 logo from the font
